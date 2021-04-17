@@ -8,6 +8,9 @@ int main(){
 	int index = 0;
 	int count = 0;
 	int menu;
+
+	count = loadData(p);
+	index = count;
 	
 	while(1){
 		menu = selectMenu();
