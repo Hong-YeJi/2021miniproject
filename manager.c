@@ -90,7 +90,7 @@ void searchProductWeight(Product *p[], int count){
         printf("\n##############제품 리스트##############\n");
         for(int i = 0 ; i < count ; i++){
                 if(p[i]->price == -1) continue;
-                if(p[i]->wegiht ==  search_weight){
+                if(p[i]->weight ==  search_weight){
                         printf("[------------%d번제품 정보------------]\n", i+1);
                         readProduct(*p[i]);
                         scnt++;
