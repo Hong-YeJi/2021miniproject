@@ -46,7 +46,7 @@ int loadData(Product *p[]){
 	for( ; i < 100 ; i++){
 		fscanf(fp, "%s", p[i]->product_name);
 		if(feof(fp)) break;
-		fscanf(fp, "%f", &p[i]->weight);
+		fscanf(fp, "%lf", &p[i]->weight);
 		fscanf(fp, "%d", &p[i]->price);
 		fscanf(fp, "%d", &p[i]->star);
 		fscanf(fp, "%d", &p[i]->star_num);
