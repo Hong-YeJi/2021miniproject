@@ -25,7 +25,7 @@ void saveData(Product *p[], int count){
 
 	for(int i = 0 ; i < count ; i++){
 		if(p[i]->price == -1) continue;
-		fprintf(fp, "%s %f %d %d %d\n", p[i]->product_name, p[i]->weight,
+		fprintf(fp, "%s %.1f %d %d %d\n", p[i]->product_name, p[i]->weight,
 				p[i]->price, p[i]->star, p[i]->star_num);
 	}
 
