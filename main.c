@@ -84,5 +84,6 @@ int main(){
 		}	
 	}
 	printf("종료됨!\n");
+	return 0;
 }
 

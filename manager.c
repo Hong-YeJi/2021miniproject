@@ -27,7 +27,7 @@ void saveData(Product *p[], int count){
 
 	for(int i = 0 ; i < count ; i++){
 		if(p[i]->price == -1) continue;
-		fprintf(fp, "%s %.1f %d %d %d\n", p[i]->product_name, p[i]->weight,
+		fprintf(fp, "%s |%.1f %d %d %d\n", p[i]->product_name, p[i]->weight,
 				p[i]->price, p[i]->star, p[i]->star_num);
 	}
 
@@ -37,6 +37,8 @@ void saveData(Product *p[], int count){
 
 int loadData(Product *p[]){
 	int i = 0;
+	char temp[80]; // 공백이 포함된 문자열을 구별하기 위해 쓰인 문자를 저장하기 위함
+	char newline[80]; // 줄바꿈을 저장하기 위함
 	FILE *fp;
 	fp = fopen("product.txt", "rt");
 
@@ -46,9 +48,12 @@ int loadData(Product *p[]){
 	}
 	
 	for(; i < 100 ; i++){
-		p[i] = (Product *)malloc(sizeof(Product));	
-		fscanf(fp, "%s", p[i]->product_name);
+		p[i] = (Product *)malloc(sizeof(Product));
+		// printf("%d\n", i); // test	
+		fscanf(fp, "%c", &newline[i]);
+		fscanf(fp, "%[^|]s", p[i]->product_name);
 		if(feof(fp)) break;
+		fscanf(fp, "%c",  &temp[i]); 
 		fscanf(fp, "%lf", &p[i]->weight);
 		fscanf(fp, "%d", &p[i]->price);
 		fscanf(fp, "%d", &p[i]->star);
