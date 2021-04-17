@@ -1,5 +1,7 @@
 // manager.c
 #include "manager.h"
+#include <stdlib.h>
+#include <string.h>
 
 void listProduct(Product *p[], int count){
 	printf("\n##############제품 리스트##############\n");
@@ -34,16 +36,17 @@ void saveData(Product *p[], int count){
 }
 
 int loadData(Product *p[]){
+	int i = 0;
 	FILE *fp;
 	fp = fopen("product.txt", "rt");
-	int i = 0;
 
 	if(fp == NULL){
-		printf("\n=> 파일 없음!\n");
+		printf("=> 파일 없음!\n");
 		return 0;
 	}
-
-	for( ; i < 100 ; i++){
+	
+	for(; i < 100 ; i++){
+		p[i] = (Product *)malloc(sizeof(Product));	
 		fscanf(fp, "%s", p[i]->product_name);
 		if(feof(fp)) break;
 		fscanf(fp, "%lf", &p[i]->weight);
@@ -55,4 +58,24 @@ int loadData(Product *p[]){
 	fclose(fp);
 	printf("=> 로딩 성공!\n");
 	return i;
+}
+
+void searchProduct(Product *p[], int count){
+	int scnt = 0;
+	char search[80];
+
+	printf("검색할 제품? ");
+	scanf("%s", search);
+
+	printf("\n##############제품 리스트##############\n");
+        for(int i = 0 ; i < count ; i++){
+                if(p[i]->price == -1) continue;
+		if(strstr(p[i]->product_name, search)){
+                	printf("[------------%d번제품 정보------------]\n", i+1);
+                	readProduct(*p[i]);
+			scnt++;
+		}
+        }
+	if(scnt == 0) printf("=> 검색된 제품명 없음!\n");
+
 }
