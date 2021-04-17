@@ -62,15 +62,15 @@ int loadData(Product *p[]){
 
 void searchProduct(Product *p[], int count){
 	int scnt = 0;
-	char search[80];
+	char search_name[80];
 
 	printf("검색할 제품? ");
-	scanf("%s", search);
+	scanf("%s", search_name);
 
 	printf("\n##############제품 리스트##############\n");
         for(int i = 0 ; i < count ; i++){
                 if(p[i]->price == -1) continue;
-		if(strstr(p[i]->product_name, search)){
+		if(strstr(p[i]->product_name, search_name)){
                 	printf("[------------%d번제품 정보------------]\n", i+1);
                 	readProduct(*p[i]);
 			scnt++;
@@ -78,4 +78,23 @@ void searchProduct(Product *p[], int count){
         }
 	if(scnt == 0) printf("=> 검색된 제품명 없음!\n");
 
+}
+
+void searchProductWeight(Product *p[], int count){
+	int scnt = 0;
+        double search_weight;
+
+        printf("검색할 제품 중량은? ");
+        scanf("%ld", &search_weight);
+
+        printf("\n##############제품 리스트##############\n");
+        for(int i = 0 ; i < count ; i++){
+                if(p[i]->price == -1) continue;
+                if(p[i]->wegiht ==  search_weight){
+                        printf("[------------%d번제품 정보------------]\n", i+1);
+                        readProduct(*p[i]);
+                        scnt++;
+                }
+        }
+        if(scnt == 0) printf("=> 검색된 제품 중량 없음!\n");
 }
