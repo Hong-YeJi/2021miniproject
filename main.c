@@ -76,6 +76,9 @@ int main(){
 		else if(menu == 6){
 			searchProduct(p, index);
 		}
+		else if(menu == 7){
+			searchProductWeight(p, index);
+		}
 		
 	}
 	printf("종료됨!\n");
