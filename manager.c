@@ -85,7 +85,7 @@ void searchProductWeight(Product *p[], int count){
         double search_weight;
 
         printf("검색할 제품 중량은? ");
-        scanf("%ld", &search_weight);
+        scanf("%le", &search_weight);
 
         printf("\n##############제품 리스트##############\n");
         for(int i = 0 ; i < count ; i++){
@@ -97,4 +97,23 @@ void searchProductWeight(Product *p[], int count){
                 }
         }
         if(scnt == 0) printf("=> 검색된 제품 중량 없음!\n");
+}
+
+void searchProductPrice(Product *p[], int count){
+	int scnt = 0;
+        int search_price;
+
+        printf("검색할 제품 가격은? ");
+        scanf("%d", &search_price);
+
+        printf("\n##############제품 리스트##############\n");
+        for(int i = 0 ; i < count ; i++){
+                if(p[i]->price == -1) continue;
+                if(p[i]->price ==  search_price){
+                        printf("[------------%d번제품 정보------------]\n", i+1);
+                        readProduct(*p[i]);
+                        scnt++;
+                }
+        }
+        if(scnt == 0) printf("=> 검색된 제품 가격 없음!\n");
 }
