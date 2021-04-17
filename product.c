@@ -51,13 +51,13 @@ int readProduct(Product p){
 		price_100g = (int)(p.price/((p.weight*1000)/100)+0.9); // 올림으로 계산
 		printf("%s\n", p.product_name); 
 		printf("%d원\n", p.price);
-		printf("(100g당:%d원)\n", price_100g);
+		printf("%.1fkg(100g당:%d원)\n", p.weight, price_100g);
 	}
 	else{
 		price_100g = (int)(p.price/(p.weight/100)+0.9); // 올림으로 계산
 		printf("%s\n", p.product_name); 
 		printf("%d원\n", p.price);
-		printf("(100g당:%d원)\n", price_100g);
+		printf("%dg(100g당:%d원)\n", (int)p.weight, price_100g);
 	}
 	if(p.star == 1) printf("* ");
 	else if(p.star == 2) printf("** ");
